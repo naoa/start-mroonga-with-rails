@@ -3,7 +3,7 @@ module Mroonga
 
   included do
     scope :mrn_search, ->(query, columns, options = {}) do
-      return if query.nil?
+      return if query.nil? or query == ''
 
       d_pragma = "*D#{options[:default_operator]}" if options[:default_operator]
       w_pragma = "*W#{options[:weight]}" if options[:weight]
@@ -30,7 +30,7 @@ module Mroonga
     end
 
     scope :mrn_snippet, ->(query, snippet_columns, options = {}) do
-      return if query.nil?
+      return if query.nil? or query == ''
       keywords = mrn_extract_keywords(query)
 
       keyword_prefix = options[:keyword_prefix] || "<span class=\"keyword\">"
