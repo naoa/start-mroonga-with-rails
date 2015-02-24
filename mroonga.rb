@@ -4,8 +4,7 @@ module Mroonga
   included do
     scope :mrn_search, ->(query, columns, options = {}) do
       return if query.nil? or query == ''
-      query = query.gsub(/"/, "\\\\\\\"")
-      query = query.gsub(/'/, "\\\\'")
+      query = mrn_escape_query(query)
 
       d_pragma = "*D#{options[:default_operator]}" if options[:default_operator]
       w_pragma = "*W#{options[:weight]}" if options[:weight]
@@ -26,7 +25,7 @@ module Mroonga
         end
       end
 
-      query_string = "MATCH(#{columns}) AGAINST('#{d_pragma} #{w_pragma} mroonga_escape(\"#{query}\") #{near} #{similar}' #{mode})"
+      query_string = "MATCH(#{columns}) AGAINST('#{d_pragma} #{w_pragma} #{query} #{near} #{similar}' #{mode})"
 
       where(query_string)
     end
@@ -65,7 +64,14 @@ module Mroonga
       columns << snippets
       select(columns)
     end
-
+    def self.mrn_escape_query(query)
+      query = query.gsub(/"/, "\\\\\"")
+      query = query.gsub(/'/, "\\\\'")
+      query = query.gsub(/\(/, "\\\\\\(")
+      query = query.gsub(/\)/, "\\\\\\)")
+      query = query.gsub(/>/, "\\\\\\>")
+      query = query.gsub(/</, "\\\\\\<")
+    end
     def self.mrn_extract_keywords(query)
       return nil if query.nil?
       query = query.gsub(/'/, "''")
