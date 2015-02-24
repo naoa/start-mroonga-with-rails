@@ -76,6 +76,9 @@ module Mroonga
       return nil if query.nil?
       query = query.gsub(/'/, "''")
       phrases = query.scan(/"[^"]*"/)
+      phrases = phrases.collect do |phrase|
+        phrase.gsub(/"/, "")
+      end
       query_excluded_phrases = query.gsub(/"[^"]*"/, '')
       words = query_excluded_phrases.split(/[　\s+-\\*()]+/)
       words.delete("OR")
