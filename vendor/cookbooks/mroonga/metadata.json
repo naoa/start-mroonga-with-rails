@@ -1,0 +1,41 @@
+{
+  "name": "mroonga",
+  "description": "Installs/Configures mroonga",
+  "long_description": "Description\n===========\nInstalls/Configures mroonga\n\n[![Build Status](https://travis-ci.org/topaz2/chef_mroonga.png?branch=master)](https://travis-ci.org/topaz2/chef_mroonga)\n[![Dependency Status](https://gemnasium.com/topaz2/chef_mroonga.png)](https://gemnasium.com/topaz2/chef_mroonga)\n[![Coverage Status](https://coveralls.io/repos/topaz2/chef_mroonga/badge.png?branch=master)](https://coveralls.io/r/topaz2/chef_mroonga?branch=master)\n\nRequirements\n============\n* Chef: 11.x+\n* Ruby: 1.9+\n\nDevelopment\n============\n1. Fork the repository from GitHub.\n2. Clone your fork to your local machine:\n\n        $ git clone git@github.com:USER/chef_mroonga.git\n\n3. Create a git branch\n\n        $ git checkout -b my_bug_fix\n\n4. **Write tests**\n5. Make your changes/patches/fixes, committing appropriately\n6. Run the tests: `bundle ex rake`\n7. Push your changes to GitHub\n8. Open a Pull Request\n\nLicense and Authors\n===================\n\n* Author:: Jun Nishikawa <topaz2@m0n0m0n0.com>\n\n* Copyright (C) 2014, Jun Nishikawa <topaz2@m0n0m0n0.com>\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses/>.\n",
+  "maintainer": "topaz2",
+  "maintainer_email": "topaz2@m0n0m0n0.com",
+  "license": "GPL v3",
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+    "apt": ">= 0.0.0",
+    "mysql": ">= 0.0.0"
+  },
+  "recommendations": {
+
+  },
+  "suggestions": {
+
+  },
+  "conflicting": {
+
+  },
+  "providing": {
+
+  },
+  "replacing": {
+
+  },
+  "attributes": {
+
+  },
+  "groupings": {
+
+  },
+  "recipes": {
+
+  },
+  "version": "0.0.3"
+}

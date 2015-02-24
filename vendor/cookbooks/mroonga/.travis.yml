@@ -1,0 +1,21 @@
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1
+  - ruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+bundler_args: --full-index --jobs=2 --without integration development
+cache:
+  - bundler
+script:
+  - bundle ex rake travis
+notifications:
+  email:
+    on_success: never  # default: change
+    on_failure: always # default: always
+env:
+  global:
+    secure: dDM1nuviP+8MEG+cts6FOucnprciBHCMeZmg0W0JjE+TtC+KYmg6/N1In6pT2RKeSykrqEuWZ2MQvHyUFzgOj5GJqu1S13wHBawXTRnzXRCzSLHDiNIh6g/EnGi3gbNYAbgTLjcz11KxYbRH18EqYlyQ76a7mejCViFK6+jkPqg=
