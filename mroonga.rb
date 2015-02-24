@@ -4,6 +4,8 @@ module Mroonga
   included do
     scope :mrn_search, ->(query, columns, options = {}) do
       return if query.nil? or query == ''
+      query = query.gsub(/"/, "\\\\\\\"")
+      query = query.gsub(/'/, "\\\\'")
 
       d_pragma = "*D#{options[:default_operator]}" if options[:default_operator]
       w_pragma = "*W#{options[:weight]}" if options[:weight]
@@ -24,14 +26,16 @@ module Mroonga
         end
       end
 
-      query_string = "MATCH(#{columns}) AGAINST('#{d_pragma} #{w_pragma} #{query} #{near} #{similar}' #{mode})"
+      query_string = "MATCH(#{columns}) AGAINST('#{d_pragma} #{w_pragma} mroonga_escape(\"#{query}\") #{near} #{similar}' #{mode})"
 
       where(query_string)
     end
 
     scope :mrn_snippet, ->(query, snippet_columns, options = {}) do
       return if query.nil? or query == ''
+      query = query.gsub(/'/, "''")
       keywords = mrn_extract_keywords(query)
+      return if keywords.nil? or keywords == []
 
       keyword_prefix = options[:keyword_prefix] || "<span class=\"keyword\">"
       keyword_suffix = options[:keyword_suffix] || "</span>"
