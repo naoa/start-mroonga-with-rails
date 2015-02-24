@@ -6,8 +6,8 @@ module Mroonga
       return if query.nil? or query == ''
       query = mrn_escape_query(query)
 
-      d_pragma = "*D#{options[:default_operator]}" if options[:default_operator]
-      w_pragma = "*W#{options[:weight]}" if options[:weight]
+      pragma = "*D#{options[:default_operator]}" if options[:default_operator]
+      pragma = "*W#{options[:weight]}" if options[:weight]
       mode = options[:mode] ? options[:mode] : "IN BOOLEAN MODE"
 
       if options[:near].instance_of?(Array)
@@ -25,7 +25,7 @@ module Mroonga
         end
       end
 
-      query_string = "MATCH(#{columns}) AGAINST('#{d_pragma} #{w_pragma} #{query} #{near} #{similar}' #{mode})"
+      query_string = "MATCH(#{columns}) AGAINST('#{pragma} #{query} #{near} #{similar}' #{mode})"
 
       where(query_string)
     end
