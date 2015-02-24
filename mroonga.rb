@@ -33,7 +33,6 @@ module Mroonga
 
     scope :mrn_snippet, ->(query, snippet_columns, options = {}) do
       return if query.nil? or query == ''
-      query = query.gsub(/'/, "''")
       keywords = mrn_extract_keywords(query)
       return if keywords.nil? or keywords == []
 
@@ -69,10 +68,12 @@ module Mroonga
 
     def self.mrn_extract_keywords(query)
       return nil if query.nil?
+      query = query.gsub(/'/, "''")
       phrases = query.scan(/"[^"]*"/)
       query_excluded_phrases = query.gsub(/"[^"]*"/, '')
       words = query_excluded_phrases.split(/[　\s+-\\*()]+/)
       words.delete("OR")
+      words.delete("")
 
       words + phrases
     end
