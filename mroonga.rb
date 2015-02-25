@@ -22,7 +22,7 @@ module Mroonga
         similar = "*S\"#{options[:similar].join(" ")}\""
       elsif options[:similar].instance_of?(Hash)
         if options[:similar][:threshold] and options[:similar][:words]
-          similar = "*S#{options[:similar][:threshold]}\"#{options[:similar][:threshold].join(" ")}\""
+          similar = "*S#{options[:similar][:threshold]}\"#{options[:similar][:words].join(" ")}\""
         end
       end
 
