@@ -9,7 +9,7 @@ module Mroonga
       pragma = "*" if options[:default_operator] or options[:weight]
       pragma << "W#{options[:weight]}" if options[:weight]
       pragma << "D#{options[:default_operator]}" if options[:default_operator]
-      mode = options[:mode] ? options[:mode] : "IN BOOLEAN MODE"
+      mode = options[:mode] || "IN BOOLEAN MODE"
 
       if options[:near].instance_of?(Array)
         near = "*N\"#{options[:near].join(" ")}\""
