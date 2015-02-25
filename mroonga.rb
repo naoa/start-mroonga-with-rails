@@ -80,6 +80,7 @@ module Mroonga
       phrases = phrases.collect do |phrase|
         phrase.gsub(/"/, "")
       end
+      phrases.delete("")
       query_excluded_phrases = query.gsub(/"[^"]*"/, '')
       words = query_excluded_phrases.split(/[　\s+-\\*()]+/)
       words.delete("OR")
